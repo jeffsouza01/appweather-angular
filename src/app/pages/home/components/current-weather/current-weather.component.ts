@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input, Output } from '@angular/core';
-import { EventEmitter } from 'events';
+import { ChangeDetectionStrategy, EventEmitter, Component, Input, Output } from '@angular/core';
+
 import { CityWeather } from 'src/app/shared/models/weather.model';
 
 @Component({
@@ -11,10 +11,11 @@ import { CityWeather } from 'src/app/shared/models/weather.model';
 export class CurrentWeatherComponent {
 
   @Input() cityWeather: CityWeather;
-  @Output() toggleBookmark = new EventEmitter;
+  @Input() isFavorite: boolean;
+  @Output() toggleBookmark = new EventEmitter();
 
   get cityName(): string {
-    return `${this.cityWeather.city.name} ${this.cityWeather.city.country}`;
+    return `${this.cityWeather.city.name}, ${this.cityWeather.city.country}`;
   }
 
   onToglleBookmark() {

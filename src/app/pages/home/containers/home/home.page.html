@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="search-container">
 
-    <div class="search-container">
+    <div class="form-group">
       <label>Pesquisar</label>
       <div>
         <input class="form-control" [formControl]="searchControl">
@@ -22,7 +22,8 @@
 
   <div *ngIf="!(loading$ | async) && !(error$ | async) && !!(cityWeather)">
     <jv-current-weather [cityWeather]="cityWeather"
-                        (toggleBookmark)='onToogleBookmark()'></jv-current-weather>
+                        [isFavorite]="isCurrentFavorite$ | async"
+                        (toggleBookmark)="onToggleBookmark()"></jv-current-weather>
 
   </div>
 
