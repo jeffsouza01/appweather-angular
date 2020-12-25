@@ -15,12 +15,14 @@ import { HomeModule } from './pages/home/home.module';
 import { BookmarksModule } from './pages/bookmarks/bookmarks.module';
 import { environment } from '../environments/environment';
 import { reducers } from './shared/state/app.reducer';
-// import { CustomRouterSerializer } from './shared/state/router/router.reducer';
+import { CustomRouterSerializer } from './shared/state/router/router.reducer';
 import { FormControl } from '@angular/forms';
+import { DailyWeatherComponent } from './details/components/daily-weather/daily-weather.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DailyWeatherComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,12 +31,11 @@ import { FormControl } from '@angular/forms';
     HttpClientModule,
     HomeModule,
     BookmarksModule,
+    EffectsModule.forRoot([]),
+    StoreModule.forRoot({}, {}),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
-    // StoreRouterConnectingModule.forRoot({ serializer: CustomRouterSerializer }),
-    StoreModule.forRoot({}, {}),
-    StoreRouterConnectingModule.forRoot(),
+    StoreRouterConnectingModule.forRoot({ serializer: CustomRouterSerializer }),
   ],
   providers: [],
   bootstrap: [AppComponent]

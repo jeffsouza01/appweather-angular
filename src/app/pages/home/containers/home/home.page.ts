@@ -24,7 +24,9 @@ export class HomePage implements OnInit, OnDestroy {
 
   bookmarksList$: Observable<Bookmark[]>;
   isCurrentFavorite$: Observable<boolean>;
+
   searchControl: FormControl;
+  searchControlWithAutoComplete: FormControl;
 
   text: string;
 
@@ -34,6 +36,9 @@ export class HomePage implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.searchControl = new FormControl('', Validators.required)
+    this.searchControlWithAutoComplete = new FormControl(undefined)
+    this.searchControlWithAutoComplete.valueChanges
+        .subscribe(value => console.log(value));
 
     this.cityWeather$ = this.store.pipe(select(fromHomeSelectors.selectCurrentWeather));
     this.cityWeather$

@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
 
-    <h2> {{ cityWeather.city.name}} </h2>
+    <h2> {{ cityName}} </h2>
 
     <jv-detailed-weather [weather]="cityWeather.weather"></jv-detailed-weather>
 
@@ -11,7 +11,8 @@
       </a>
 
       <a class="card-link"
-          routerLink='/details'>
+          routerLink="/details"
+          (queryParams)="{ lat: cityWeather.city.coord.lat, long: cityWeather.city.coord.lon }">
         Ver Detalhes
       </a>
     </div>

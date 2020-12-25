@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { CityWeather } from '../models/weather.model';
-import { responseToCityWeather } from '../utils/response.utils';
+import { CityDailyWeather, CityWeather } from '../models/weather.model';
+import { responseToCityDailyWeather, responseToCityWeather } from '../utils/response.utils';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +18,25 @@ export class WeatherService {
 
     return this.doGet<any>('weather', params)
       .pipe(map(response => responseToCityWeather(response)))
+  }
+
+  getCityWeatherByCoord(lat: number, long: number): Observable<CityWeather> {
+    const params = new HttpParams({ fromObject: {
+      lat: lat.toString(),
+      long: long.toString(),
+    }});
+    return this.doGet<any>('weather', params)
+              .pipe(map(response => responseToCityWeather(response)));
+  }
+
+  getWeatherDetails(lat: number, long: number): Observable<CityDailyWeather> {
+    const params = new HttpParams({fromObject: {
+      lat: lat.toString(),
+      long: long.toString(),
+      exclude: 'minutely, hourly',
+    }});
+    return this.doGet<any>('onecall', params)
+        .pipe(map(response => responseToCityDailyWeather(response)));
   }
 
 
