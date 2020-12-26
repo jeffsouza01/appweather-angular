@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot , RouterStateSnapshot, Router } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot , RouterStateSnapshot, Router, UrlTree } from '@angular/router';
 
 @Injectable()
 export class DetailsGuard implements CanActivate{
@@ -8,12 +8,11 @@ export class DetailsGuard implements CanActivate{
 
   }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):boolean | UrlTree{
     if (route.queryParams.lat && route.queryParams.lon) {
       return true
 
     }
-
     return this.router.createUrlTree(['']);
   }
 }

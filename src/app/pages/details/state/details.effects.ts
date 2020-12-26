@@ -21,8 +21,8 @@ export class DetailsEffects {
             withLatestFrom(this.store.pipe(select(fromRouterSelectors.selectRouterQueryParams))),
             mergeMap(([, queryParams]: [any, Params]) =>
                 combineLatest([
-                    this.weatherService.getCityWeatherByCoord(queryParams.lat, queryParams.long),
-                    this.weatherService.getWeatherDetails(queryParams.lat, queryParams.long)
+                    this.weatherService.getCityWeatherByCoord(queryParams.lat, queryParams.lon),
+                    this.weatherService.getWeatherDetails(queryParams.lat, queryParams.lon)
                 ])
         ),
         catchError((err, caught$) => {
@@ -35,7 +35,7 @@ export class DetailsEffects {
             return fromDetailsActions.loadWeatherDetailsSucess({ entity });
         }),
         )
-        
+
     );
 
     constructor(private actions$: Actions,
@@ -43,5 +43,5 @@ export class DetailsEffects {
                 private weatherService: WeatherService) {
 
         }
-        
+
 }

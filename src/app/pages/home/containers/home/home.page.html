@@ -21,7 +21,7 @@
 
   <jv-loader *ngIf="loading$ | async"></jv-loader>
 
-  <div *ngIf="!(loading$ | async) && !(error$ | async) && !!(cityWeather)">
+  <div *ngIf="!(loading$ | async) && !(error$ | async) && !!cityWeather">
     <jv-current-weather [cityWeather]="cityWeather"
                         [isFavorite]="isCurrentFavorite$ | async"
                         (toggleBookmark)="onToggleBookmark()"></jv-current-weather>

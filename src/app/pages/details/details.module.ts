@@ -12,8 +12,6 @@ import { DetailsPage } from './containers/details/details.page';
 import { ComponentsModule } from 'src/app/shared/components/components.module';
 import { DailyWeatherComponent } from './components/daily-weather/daily-weather.component';
 
-
-
 @NgModule({
   imports: [
     CommonModule,
@@ -29,7 +27,7 @@ import { DailyWeatherComponent } from './components/daily-weather/daily-weather.
     DailyWeatherComponent
   ],
   providers: [
-    DetailsGuard
-  ]
+    DetailsGuard,
+  ],
 })
 export class DetailsModule { }

@@ -15,9 +15,9 @@ export const bookmarkInitialState: BookmarksState = {
 
 const reducer = createReducer(
   bookmarkInitialState,
-  on(fromHomeActions.toggleBookmark, (state, {entity}) => ({
+  on(fromHomeActions.toggleBookmark, (state, { entity }) => ({
     ...state,
-    list: toogleBookmark(state.list, entity)
+    list: toggleBookmark(state.list, entity)
   })),
   on(fromBookmarksAction.removeBookmark, (state, { id}) => ({
     ...state,
@@ -29,7 +29,7 @@ export function bookmarkReducer(state: BookmarksState | undefined, action: Actio
   return reducer(state, action);
 }
 
-function toogleBookmark(list: Bookmark[], entity: Bookmark): Bookmark[] {
+function toggleBookmark(list: Bookmark[], entity: Bookmark): Bookmark[] {
   if (!!list.find(bookmark => bookmark.id === entity.id)) {
     return list.filter(bookmark => bookmark.id !== entity.id);
   }
