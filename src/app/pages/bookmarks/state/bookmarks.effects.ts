@@ -44,7 +44,7 @@ export class BookmarksEffects {
 
 
   constructor(private actions$: Actions,
-    private store: Store<AppState>,
-    private weatherService: WeatherService) {
+              private store: Store<AppState>,
+              private weatherService: WeatherService) {
   }
 }

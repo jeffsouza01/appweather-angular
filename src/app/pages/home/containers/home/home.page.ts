@@ -10,10 +10,11 @@ import { CityWeather } from 'src/app/shared/models/weather.model';
 import { UnitSelectorComponent } from '../unit-selector/unit-selector.component';
 
 import { CityTypeaheadItem } from 'src/app/shared/models/city-typeahead-item.model';
+import { Units } from 'src/app/shared/models/units.enum';
 import * as fromHomeActions from '../../state/home.actions';
 import * as fromHomeSelectors from '../../state/home.selector';
 import * as fromBookmarksSelectors from '../../../bookmarks/state/bookmarks.selectors';
-
+import * as fromConfigSelectors from '../../../../shared/state/config/config.selectors';
 
 @Component({
   selector: 'jv-home',
@@ -34,6 +35,8 @@ export class HomePage implements OnInit, OnDestroy {
   searchControlWithAutoComplete: FormControl;
 
   text: string;
+
+  unit$: Observable<Units>;
 
   private componentDestroy$ = new Subject();
 
@@ -75,6 +78,10 @@ export class HomePage implements OnInit, OnDestroy {
             }),
           );
 
+      this.unit$ = this.store.pipe(select(fromConfigSelectors.selectUnitConfig));
+      
+      this.setupPortal();
+
   }
 
   ngOnDestroy() {
@@ -101,9 +108,9 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   private setupPortal() {
-    const portal = document.querySelector('#navbar-portal-outlet');
+    const elementPortal = document.querySelector('#navbar-portal-outlet');
     this.portalOutlet = new DomPortalOutlet(
-      portal,
+      elementPortal,
       this.componentFactoryResolver,
       this.appRef,
       this.injector,

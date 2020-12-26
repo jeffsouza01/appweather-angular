@@ -23,11 +23,11 @@ import { CustomRouterSerializer } from './shared/state/router/router.reducer';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     HomeModule,
     BookmarksModule,
-    BrowserAnimationsModule,
     EffectsModule.forRoot([]),
     StoreModule.forRoot(reducers),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
