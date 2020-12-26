@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot , RouterStateSnapshot, Router } from '@angular/router';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DetailsGuard implements CanActivate{
 
   constructor(private router: Router) {
@@ -16,6 +14,6 @@ export class DetailsGuard implements CanActivate{
 
     }
 
-    return this.router.createUrlTree(['/']);
+    return this.router.createUrlTree(['']);
   }
 }

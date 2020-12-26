@@ -20,19 +20,19 @@ export class WeatherService {
       .pipe(map(response => responseToCityWeather(response)))
   }
 
-  getCityWeatherByCoord(lat: number, long: number): Observable<CityWeather> {
+  getCityWeatherByCoord(lat: number, lon: number): Observable<CityWeather> {
     const params = new HttpParams({ fromObject: {
       lat: lat.toString(),
-      long: long.toString(),
+      lon: lon.toString(),
     }});
     return this.doGet<any>('weather', params)
               .pipe(map(response => responseToCityWeather(response)));
   }
 
-  getWeatherDetails(lat: number, long: number): Observable<CityDailyWeather> {
+  getWeatherDetails(lat: number, lon: number): Observable<CityDailyWeather> {
     const params = new HttpParams({fromObject: {
       lat: lat.toString(),
-      long: long.toString(),
+      lon: lon.toString(),
       exclude: 'minutely, hourly',
     }});
     return this.doGet<any>('onecall', params)

@@ -26,8 +26,8 @@ export class DetailsEffects {
                 ])
         ),
         catchError((err, caught$) => {
-            this.store.dispatch(fromDetailsActions.loadWeatherDetailsFailed()),
-            return caught$
+            this.store.dispatch(fromDetailsActions.loadWeatherDetailsFailed());
+            return caught$;
         }),
         map(([current, daily]) => {
             const entity = daily;

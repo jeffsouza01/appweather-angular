@@ -29,7 +29,6 @@ const reducer = createReducer(
         ...state,
         entity,
         loading: false,
-        error: false,
     })),
     on(fromDetailsActions.loadWeatherDetailsFailed, state => ({
         ...state,
